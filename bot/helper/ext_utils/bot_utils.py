@@ -26,17 +26,17 @@ COUNT = 0
 PAGE_NO = 1
 
 class MirrorStatus:
-    STATUS_UPLOADING = "Uploading...📤"
-    STATUS_DOWNLOADING = "Downloading...📥"
-    STATUS_CLONING = "Cloning...♻️"
-    STATUS_WAITING = "Queued...💤"
-    STATUS_FAILED = "Failed 🚫. Cleaning Download..."
-    STATUS_PAUSE = "Paused...⛔️"
-    STATUS_ARCHIVING = "Archiving...🔐"
-    STATUS_EXTRACTING = "Extracting...📂"
-    STATUS_SPLITTING = "Splitting...✂️"
-    STATUS_CHECKING = "CheckingUp...📝"
-    STATUS_SEEDING = "Seeding...🌧"
+    STATUS_UPLOADING = "Bitch is Uploading...📤"
+    STATUS_DOWNLOADING = "Bitch is Downloading...📥"
+    STATUS_CLONING = "Bitch is Cloning...♻️"
+    STATUS_WAITING = "Bitch is Queued...💤"
+    STATUS_FAILED = "Bitch Failed 🚫. Cleaning Download..."
+    STATUS_PAUSE = "Bitch is Paused...⛔️"
+    STATUS_ARCHIVING = "Bitch is Archiving...🔐"
+    STATUS_EXTRACTING = "Bitch is Extracting...📂"
+    STATUS_SPLITTING = "Bitch is Splitting...✂️"
+    STATUS_CHECKING = "Bitch is CheckingUp...📝"
+    STATUS_SEEDING = "Bitch is Seeding...🌧"
 
 class EngineStatus:
     STATUS_ARIA = "Aria2c v1.35.0"
@@ -360,7 +360,7 @@ CPU: {cpu}% | RAM: {mem}%
 Disk: {total} | Free: {free}
 Used: {used} [{disk}%]
 
-Made with ❤️ by Dawn
+Kanged by Sid xD
 """
     return stats
 dispatcher.add_handler(
