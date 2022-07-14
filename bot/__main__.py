@@ -33,7 +33,7 @@ def stats(update, context):
     cpuUsage = cpu_percent(interval=1)
     memory = virtual_memory()
     mem_p = memory.percent
-    stats = f'<b><i><u>@Z_Mirror Bot Statistics</u></i></b>\n\n'\
+    stats = f'<b><i><u>Sid Bot Statistics</u></i></b>\n\n'\
             f'<b>Updated:</b> <code>{last_commit}</code>\n'\
             f'<b>I am Working For:</b> <code>{currentTime}</code>\n'\
             f'<b>Total Disk:</b> <code>{total}</code> [{disk}% In use]\n'\
