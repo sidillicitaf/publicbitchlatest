@@ -50,7 +50,7 @@ def start(update, context):
     buttons.buildbutton("Owner", "https://t.me/sid_gil")
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
-        start_string =  bot.send_photo(photo="https://telegra.ph/file/d77a3767a8d58da76f2df.jpg",
+        start_string =  bot.send_photo(m.chat.id, photo="https://telegra.ph/file/d77a3767a8d58da76f2df.jpg",
                                        caption =f'''
 Use Kr BSDK /start kyun send kr rha
 ''')
