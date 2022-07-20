@@ -49,21 +49,10 @@ def start(update, context):
     buttons.buildbutton("Owner", "https://t.me/sid_gil")
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
-        start_string =  await bot.send_photo(
-    m.chat.id,
-    photo="https://telegra.ph/file/d77a3767a8d58da76f2df.jpg",
-    caption = f"Hello [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n" +
-    f"\nI am Auto Forwarder bot." +
-    f"\nPress /help for More Info.\n\n__**Developer** : ACE\n**Language** : Python\n**Framwork** : Pyrogram__",
-    # parse_mode="md",
-    reply_markup=InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("🙋‍♂️Dev Ace", url="https://t.me/AceCallRobot")],
-            [InlineKeyboardButton("Channel", url="https://t.me/WickedSkull")],
-            [InlineKeyboardButton("Repo", url="https://github.com/imacekun/ACE-AUTO-FORWARD/")],
-        ],
-    )
-    )
+        start_string =  f'''
+Use Kr BSDK /start kyun send kr rha
+'''
+        sendMarkup(start_string, context.bot, update.message, reply_markup)
     else:
         sendMarkup('Bina Permission ke Nahi hoga start Lode auth maang', context.bot, update.message, reply_markup)
 
