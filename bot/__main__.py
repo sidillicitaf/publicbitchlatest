@@ -44,13 +44,13 @@ def stats(update, context):
         stats += heroku
     sendMessage(stats, context.bot, update.message)
 
-def start(update, context):
+def start(update, context, m: Message):
     photo="https://telegra.ph/file/d77a3767a8d58da76f2df.jpg"
     buttons = ButtonMaker()
     buttons.buildbutton("Owner", "https://t.me/sid_gil")
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
-        start_string =  bot.send_photo(chat.id, photo="https://telegra.ph/file/d77a3767a8d58da76f2df.jpg",
+        start_string =  bot.send_photo(m.chat.id, photo="https://telegra.ph/file/d77a3767a8d58da76f2df.jpg",
                                        caption =f'''
 Use Kr BSDK /start kyun send kr rha
 ''')
