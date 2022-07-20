@@ -57,6 +57,7 @@ Use Kr BSDK /start kyun send kr rha
 Type /{BotCommands.HelpCommand} to get a list of available commands
 '''
         sendMarkup(start_string, context.bot, update.message, reply_markup)
+        )
     else:
         sendMarkup('Bina Permission ke Nahi hoga start Lode auth maang', context.bot, update.message, reply_markup)
 
