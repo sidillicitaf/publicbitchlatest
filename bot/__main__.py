@@ -52,10 +52,9 @@ def start(update, context):
         start_string =  await bot.send_photo(
     m.chat.id,
     photo="https://telegra.ph/file/d77a3767a8d58da76f2df.jpg",
-    caption = f'''
-Use Kr BSDK /start kyun send kr rha
-Type /{BotCommands.HelpCommand} to get a list of available commands
-'''
+    caption = f"
+Use Kr BSDK /start kyun send kr rha"
+            
         sendMarkup(start_string, context.bot, update.message, reply_markup)
         )
     else:
