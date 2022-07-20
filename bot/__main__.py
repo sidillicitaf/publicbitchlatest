@@ -45,17 +45,17 @@ def stats(update, context):
         stats += heroku
     sendMessage(stats, context.bot, update.message)
 
-def start(update, context, m: Message):
-    photo="https://telegra.ph/file/d77a3767a8d58da76f2df.jpg"
+def start(update, context):
     buttons = ButtonMaker()
-    buttons.buildbutton("Owner", "https://t.me/sid_gil")
+    buttons.buildbutton("Report Group", "https://t.me/Mltb_chat_unofficial")
+    buttons.buildbutton("Repo", "https://github.com/Dawn-India/Z-Mirror")
+    buttons.buildbutton("Mirror Group", "https://t.me/z_mirror")
+    buttons.buildbutton("Owner", "https://t.me/dawn_in")
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
-        start_string =  bot.send_photo(m.chat.id, photo="https://telegra.ph/file/d77a3767a8d58da76f2df.jpg",
-                                       caption =f'''
-Use Kr BSDK /start kyun send kr rha
-''')
-        sendMarkup(start_string, context.bot, update.message, reply_markup)
+        start_string = f'''
+Use kar BSDK /start kyun send kr rha 
+'''
     else:
         sendMarkup('Bina Permission ke Nahi hoga start Lode auth maang', context.bot, update.message, reply_markup)
 
