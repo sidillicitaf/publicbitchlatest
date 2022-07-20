@@ -50,10 +50,11 @@ def start(update, context):
     buttons.buildbutton("Owner", "https://t.me/sid_gil")
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
-        start_string =  f'''
+        start_string =  bot.send_photo(photo="https://telegra.ph/file/d77a3767a8d58da76f2df.jpg",
+                                       caption =f'''
 Use Kr BSDK /start kyun send kr rha
-'''
-        sendMarkup(photo, start_string, context.bot, update.message)
+''')
+        sendMarkup(start_string, context.bot, update.message, reply_markup)
     else:
         sendMarkup('Bina Permission ke Nahi hoga start Lode auth maang', context.bot, update.message, reply_markup)
 
