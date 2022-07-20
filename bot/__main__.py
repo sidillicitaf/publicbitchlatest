@@ -53,7 +53,7 @@ def start(update, context):
         start_string =  f'''
 Use Kr BSDK /start kyun send kr rha
 '''
-        sendMarkup(photo, start_string, context.bot, update.message, reply_markup)
+        sendMarkup(photo, start_string, context.bot, update.message)
     else:
         sendMarkup('Bina Permission ke Nahi hoga start Lode auth maang', context.bot, update.message, reply_markup)
 
