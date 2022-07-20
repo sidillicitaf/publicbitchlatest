@@ -51,9 +51,9 @@ def start(update, context):
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
-Use kar BSDK /start kyun send kr rha 
+Use kar BSDK /start kyun send kr rha
 '''
-                sendMarkup(start_string, context.bot, update.message, reply_markup)
+        sendMarkup(start_string, context.bot, update.message, reply_markup)
     else:
         sendMarkup('Bina Permission ke Nahi hoga start Lode auth maang', context.bot, update.message, reply_markup)
 
