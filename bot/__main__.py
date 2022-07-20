@@ -45,6 +45,7 @@ def stats(update, context):
     sendMessage(stats, context.bot, update.message)
 
 def start(update, context):
+    photo="https://telegra.ph/file/d77a3767a8d58da76f2df.jpg"
     buttons = ButtonMaker()
     buttons.buildbutton("Owner", "https://t.me/sid_gil")
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
