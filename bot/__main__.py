@@ -62,8 +62,6 @@ def start(update, context, bot: ace , m: Message):
         ],
     )
     )
-    else:
-        sendMarkup('Bina Permission ke Nahi hoga start Lode auth maang', context.bot, update.message, reply_markup)
 
 def restart(update, context):
     restart_message = sendMessage("Restarting...", context.bot, update.message)
