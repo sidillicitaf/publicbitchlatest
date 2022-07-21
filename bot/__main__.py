@@ -1,10 +1,3 @@
-from pyrogram import filters
-from pyrogram import Client as ace
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
-from main import LOGGER, prefixes, AUTH_USERS
-from config import Config
-import os
-import sys
 from signal import signal, SIGINT
 from os import path as ospath, remove as osremove, execl as osexecl
 from subprocess import run as srun, check_output
@@ -13,7 +6,8 @@ from time import time
 from sys import executable
 from telegram import InlineKeyboardMarkup
 from telegram.ext import CommandHandler
-from bot import bot, dispatcher, updater, botStartTime, IGNORE_PENDING_REQUESTS, LOGGER, Interval, INCOMPLETE_TASK_NOTIFIER, DB_URI, alive, app, main_loop, HEROKU_API_KEY, HEROKU_APP_NAME
+from bot import bot, dispatcher, updater, botStartTime, IGNORE_PENDING_REQUESTS, LOGGER, Interval, INCOMPLETE_TASK_NOTIFIER,\
+                DB_URI, alive, app, main_loop, HEROKU_API_KEY, HEROKU_APP_NAME, AUTHORIZED_CHATS, TITLE_NAME
 from .helper.ext_utils.fs_utils import start_cleanup, clean_all, exit_clean_up
 from .helper.ext_utils.telegraph_helper import telegraph
 from .helper.ext_utils.bot_utils import get_readable_file_size, get_readable_time
@@ -51,22 +45,17 @@ def stats(update, context):
         stats += heroku
     sendMessage(stats, context.bot, update.message)
 
-def start(update, context, bot: ace , m: Message):
-    bot.send_photo(
-    m.chat.id,
-    photo="https://telegra.ph/file/d77a3767a8d58da76f2df.jpg",
-    caption = f"Hello [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n" +
-    f"\nI am Auto Forwarder bot." +
-    f"\nPress /help for More Info.\n\n__**Developer** : ACE\n**Language** : Python\n**Framwork** : Pyrogram__",
-    # parse_mode="md",
-    reply_markup=InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("🙋‍♂️Dev Ace", url="https://t.me/AceCallRobot")],
-            [InlineKeyboardButton("Channel", url="https://t.me/WickedSkull")],
-            [InlineKeyboardButton("Repo", url="https://github.com/imacekun/ACE-AUTO-FORWARD/")],
-        ],
-    )
-    )
+def start(update, context):
+    buttons = ButtonMaker()
+    buttons.buildbutton("Owner", "https://t.me/sid_gil")
+    reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
+    if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
+        start_string = f'''
+USE Kar BSDK /start kyun send Kr raha
+'''
+        sendMarkup(start_string, context.bot, update.message, reply_markup)
+    else:
+        sendMarkup('Auth maang Lode Bina auth ke nahi chalega !', context.bot, update.message, reply_markup)
 
 def restart(update, context):
     restart_message = sendMessage("Restarting...", context.bot, update.message)
@@ -162,7 +151,7 @@ help_string_telegraph = f'''<br>
 '''
 
 help = telegraph.create_page(
-        title='Z-Mirror-Bot Help',
+        title= f'{TITLE_NAME} Help',
         content=help_string_telegraph,
     )["path"]
 
@@ -192,6 +181,7 @@ def bot_help(update, context):
 
 def main():
     start_cleanup()
+    notifier_dict = None
     if INCOMPLETE_TASK_NOTIFIER and DB_URI is not None:
         if notifier_dict := DbManger().get_incomplete_tasks():
             for cid, data in notifier_dict.items():
@@ -211,7 +201,7 @@ def main():
                                  osremove(".restartmsg")
                              else:
                                  try:
-                                     bot.sendMessage(cid, msg, 'HTML')
+                                     bot.sendMessage(cid, msg, 'HTML', disable_web_page_preview=True)
                                  except Exception as e:
                                      LOGGER.error(e)
                              msg = ''
@@ -220,7 +210,7 @@ def main():
                      osremove(".restartmsg")
                 else:
                     try:
-                        bot.sendMessage(cid, msg, 'HTML')
+                        bot.sendMessage(cid, msg, 'HTML', disable_web_page_preview=True)
                     except Exception as e:
                         LOGGER.error(e)
 
@@ -229,6 +219,12 @@ def main():
             chat_id, msg_id = map(int, f)
         bot.edit_message_text("Restarted successfully!", chat_id, msg_id)
         osremove(".restartmsg")
+    elif not notifier_dict and AUTHORIZED_CHATS:
+        for id_ in AUTHORIZED_CHATS:
+            try:
+                bot.sendMessage(id_, "Bot Restarted!", 'HTML')
+            except Exception as e:
+                LOGGER.error(e)
 
     start_handler = CommandHandler(BotCommands.StartCommand, start, run_async=True)
     ping_handler = CommandHandler(BotCommands.PingCommand, ping,
