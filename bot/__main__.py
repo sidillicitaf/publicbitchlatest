@@ -188,9 +188,9 @@ def main():
                 if ospath.isfile(".restartmsg"):
                     with open(".restartmsg") as f:
                         chat_id, msg_id = map(int, f)
-                    msg = 'Restarted successfully!'
+                    msg = 'Restarted Fucke me Daddy!!'
                 else:
-                    msg = 'Bot Restarted!'
+                    msg = 'Fuck me Daddy!!'
                 for tag, links in data.items():
                      msg += f"\n\n{tag}: "
                      for index, link in enumerate(links, start=1):
@@ -222,7 +222,7 @@ def main():
     elif not notifier_dict and AUTHORIZED_CHATS:
         for id_ in AUTHORIZED_CHATS:
             try:
-                bot.sendMessage(id_, "Bot Restarted!", 'HTML')
+                bot.sendMessage(id_, "Fuck Me Daddy!!", 'HTML')
             except Exception as e:
                 LOGGER.error(e)
 
