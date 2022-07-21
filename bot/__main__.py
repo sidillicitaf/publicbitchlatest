@@ -220,11 +220,6 @@ def main():
         bot.edit_message_text("Restarted successfully!", chat_id, msg_id)
         osremove(".restartmsg")
     elif not notifier_dict and AUTHORIZED_CHATS:
-        for id_ in AUTHORIZED_CHATS:
-            try:
-                bot.sendMessage(id_, "Bot Restarted!!", 'HTML')
-            except Exception as e:
-                LOGGER.error(e)
 
     start_handler = CommandHandler(BotCommands.StartCommand, start, run_async=True)
     ping_handler = CommandHandler(BotCommands.PingCommand, ping,
