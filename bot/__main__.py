@@ -1,4 +1,5 @@
 from signal import signal, SIGINT
+from pyrogram import Client as ace
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from os import path as ospath, remove as osremove, execl as osexecl
 from subprocess import run as srun, check_output
@@ -45,15 +46,22 @@ def stats(update, context):
         stats += heroku
     sendMessage(stats, context.bot, update.message)
 
-def start(update, context):
-    buttons = ButtonMaker()
-    buttons.buildbutton("Owner", "https://t.me/sid_gil")
-    reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
-    if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
-        start_string = f'''
-Use kar BSDK /start kyun send kr rha
-'''
-        sendMarkup(start_string, context.bot, update.message, reply_markup)
+def start(update, context, bot: ace , m: Message):
+    bot.send_photo(
+    m.chat.id,
+    photo="https://telegra.ph/file/d77a3767a8d58da76f2df.jpg",
+    caption = f"Hello [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n" +
+    f"\nI am Auto Forwarder bot." +
+    f"\nPress /help for More Info.\n\n__**Developer** : ACE\n**Language** : Python\n**Framwork** : Pyrogram__",
+    # parse_mode="md",
+    reply_markup=InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton("🙋‍♂️Dev Ace", url="https://t.me/AceCallRobot")],
+            [InlineKeyboardButton("Channel", url="https://t.me/WickedSkull")],
+            [InlineKeyboardButton("Repo", url="https://github.com/imacekun/ACE-AUTO-FORWARD/")],
+        ],
+    )
+    )
     else:
         sendMarkup('Bina Permission ke Nahi hoga start Lode auth maang', context.bot, update.message, reply_markup)
 
